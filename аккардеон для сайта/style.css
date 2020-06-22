@@ -1,0 +1,75 @@
+*, *::before, *::after{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body{
+	font-family: Arial;
+	line-height: 1.2;
+	background-color: #64badd;
+}
+.wrapper{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+}
+.accordion{
+	max-width: 320px;
+	box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.4);
+	/* скругление у аккордеона */
+	border-radius: 8px;
+	/* так как фоновый цвет задан для отдельных частей аккордеона то скроем эти углы в родительский элемент чтобы углы не выступали за пределы родительского элемента */
+	overflow: hidden;
+}
+/* отключение стрелочки */
+summary::-webkit-details-marker{
+	display: none;
+}
+.accordion__item{
+	background-color: #353535;
+	color: #fff;
+}
+.accordion__title{
+	text-align: center;
+	width: 100%;
+	font-size: 20px;
+	white-space: nowrap;
+	background-color: #272727;
+	outline: none;
+	cursor: pointer;
+	border-bottom: 1px solid #777;
+	padding: 10px 40px 10px 20px;
+	/* чтобы при наведении менялся цвет :hover transition задается элементу не при наведении а в обычном состоянии */
+	transition: 0.3s all;
+	position: relative;
+}
+.accordion__title:hover{
+	background-color: #111;
+}
+.accordion__title::after{
+	display: block;
+	/* стрелка юникод */
+	content: '▼';
+	font-size: 12px;
+	position: absolute;
+	right: 12px;
+	/* сдвиг по центру относительно родителя */
+	top: 50%;
+	/* сдвиг относительно его собственной высоты на -50% */
+	transform: translateY(-50%);
+	transition: 0.3s all;
+}
+.accordion__body{
+	padding: 20px;
+}
+.accordion__item:not([open]):last-child .accordion__title{
+	/* у последнего элемента убираем бордер заданный ранее */
+	border-bottom: 1px solid transparent;
+}
+/* у тега detailis есть состояние open.  open отвечатает за то состояниекогла тег находиться в раскрытом виде */
+.accordion__item[open] .accordion__title::after{
+	/* если просто переписать то тогда собьется положение стрелочки, поэтому нужно просто дописать поворот стрелки на 180 градусов */
+	transform: translateY(-50%) rotate(180deg);
+}

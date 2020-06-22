@@ -1,0 +1,92 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+.wrapper{
+	font-family: Arial;
+	margin: 200px auto;
+	width: 320px;
+	background-color: #000000;
+	position: relative;
+	color: #ffffff;
+	text-align: center;
+	height: 40px;
+}
+#check-menu{
+	display: none;
+}
+label{
+	display: block;
+	position: absolute;
+	top: 0;
+	/* прибиваем к верхнему краю родителя */
+	left: 0;
+	/* прибиваем к левому краю родителя */
+	height: 100%;
+	width: 100%;
+	cursor: pointer;
+	z-index: 2;
+	line-height: 40px;
+}
+.burger-line{
+	position: absolute;
+	top: 8px;
+	right: 10px;
+	width: 35px;
+	height: 1px;
+	background-color: #fff;
+	/* для плавности линий который переходят в крестик */
+	transition: all .5s;
+}
+ /* first первая линия может оставаться на том месте где она находиться */
+.second,
+.third{
+	top: 18px;
+}
+/* Вторая и третья линия должны быть по ценру. при анимации первая и четвертая будут скрываться а вторая и третья будут образовывать крестик, по которому пользователь потом будет хакрывать меню */
+
+.fourth{
+	top: 28px;
+}
+.main-menu{
+	display: block;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	transform: translateY(100%);
+	/* необходимо чтобы меню было под контейнером (выходило за пределы) те должно открываться снизу те меню сдвигается вниз на 100% своей высоты */
+	max-height: 0;
+	font-size: 0;
+	overflow: hidden;
+	/* стилизация меню для плавности реализуется не через display-none, а через нулевую высоту и overflow-hidden чтобф дети не вылезали за рамки родителя */
+	transition: all .5s;
+	/* анимация для плавности появляения меню */
+}
+a{
+	display: block;
+	width: 100%;
+	padding: 10px;
+	color: #ffffff;
+	text-decoration: none;
+	background-color: #000000;
+	border-top: 1px solid rgba(255, 255,255, .3)
+}
+/* анимация будет происходить при клике на label и введение его в положение checked  */
+/* при переключении чекбокса в положение :checked следующий (~) сестринский элемент .main-menu имеет свойства */
+#check-menu:checked ~ .main-menu{
+	max-height: 500px;
+	font-size: 16px;
+}
+#check-menu:checked ~ .first,
+#check-menu:checked ~ .fourth{
+	display: none;
+}
+#check-menu:checked ~ .second{
+	transform: rotate(45deg);
+	/* transform-origin: center - не нужно так как по умолчанию это и так середина 50% 50% 0 */
+}
+#check-menu:checked ~ .third{
+	transform: rotate(-45deg);
+	Ъ

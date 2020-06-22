@@ -1,0 +1,44 @@
+*, *::after, *::before{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+/* css переменные для обьявления цвета :root --переменная */
+:root{
+	--blue: #3b7dee;
+	--green: #2ba24e;
+	--yellow: #f0b501;
+	--red: #e53d2a;
+}
+body{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+.google{
+	width: 125px;
+	height: 150px;
+	position: relative;
+	/* тк относительно этого блока будут позиционироваться псевдоэлементы */
+	border-top: 50px solid var(--blue);
+	border-right: 50px solid var(--blue);
+	border-bottom: 50px solid var(--blue);
+	border-radius: 0 0 250px 0;
+}
+.google::before{
+	display: block;
+	content: '';
+	width: 250px;
+	height: 250px;
+	border-top: 50px solid var(--red);
+	border-bottom: 50px solid var(--green);
+	border-left: 50px solid var(--yellow);
+	border-right: 50px solid transparent;
+	/* чтобы сработало скругление сверху справа его задаем прозрачным цветом transparent или прозрачный задать с помошью rgba(255, 255, 255, 0) */
+	border-radius: 200px;
+	position: absolute;
+	top: -150px;
+	right: -50px;
+}
